@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Shop from "../views/Shop.vue";
 import Detail from "../components/Detail.vue";
+import Basket from "../components/Basket.vue";
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,10 @@ const routes = [
       {
         path: "/detail/:id",
         component: Detail,
+      },
+      {
+        path: "/basket",
+        component: Basket,
       },
     ],
   },

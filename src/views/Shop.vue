@@ -1,60 +1,152 @@
 <template>
   <v-container>
-    <h1>Shop page</h1>
-    <v-container class="d-flex flex-wrap">
-      <v-card
-        class="mx-auto mb-5"
-        elevation="15"
-        max-width="400"
-        v-for="(product, index) in productList"
-        :key="index"
+    <v-container :style="display_product">
+      <v-btn
+        class="transition-swing v-btn v-btn--bottom v-btn--is-elevated v-btn--fab v-btn--fixed v-btn--has-bg v-btn--right v-btn--round theme--light v-size--large"
+        fab
+        dark
+        large
+        @click="displayshow(3)"
+        color="purple"
       >
-        <v-img
-          class="white--text align-end"
-          height="200px"
-          :src="product.image"
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          fill="currentColor"
+          class="bi bi-cart-check"
+          viewBox="0 0 16 16"
         >
-        </v-img>
-        <v-card-title class="deep-purple--text text--darken-1">{{
-          product.title
-        }}</v-card-title>
-        <v-card-subtitle class="pb-0"
-          ><h2>
-            {{ product.category }}
-            <v-btn color="orange" text> {{ product.rating.rate }}⭐ </v-btn>
-            <v-btn color="orange" text> {{ product.rating.count }}🧑‍🦰 </v-btn>
-          </h2>
-        </v-card-subtitle>
+          <path
+            d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"
+          />
+          <path
+            d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+          />
+        </svg>
+      </v-btn>
+      <div class="text-center mb-3 font-weight-black display-1">
+        Product All
+      </div>
+      <v-container class="d-flex flex-wrap">
+        <v-card
+          class="mx-auto mb-5"
+          elevation="15"
+          max-width="400"
+          v-for="(product, index) in productList"
+          :key="index"
+        >
+          <v-img
+            class="white--text align-end"
+            height="200px"
+            :src="product.image"
+          >
+          </v-img>
+          <v-card-title class="deep-purple--text text--darken-1">{{
+            product.title
+          }}</v-card-title>
+          <v-card-subtitle class="pb-0"
+            ><h2>
+              {{ product.category }}
+            </h2>
+          </v-card-subtitle>
+          <v-card-text class="text--primary mt-5">
+            <div class="d-flex mb-2">
+              <h2 class="mr-2">Rating :</h2>
+              <h2 class="light-green--text accent-3">
+                {{ product.rating.rate }}
+              </h2>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-star-fill yellow--text text--darken-4 mx-2"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+            </div>
+            <div class="d-flex mb-2">
+              <h2>Buy :</h2>
+              <h2 class="mx-2 deep-orange--text text--darken-3">
+                {{ product.rating.count }}
+              </h2>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-people-fill deep-purple--text text--darken-3"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"
+                />
+                <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+              </svg>
+            </div>
+            <h1 class="mt-5 indigo--text text--darken-1">
+              {{ product.price }} $
+            </h1>
+          </v-card-text>
 
-        <v-card-text class="text--primary">
-          <h1 class="mt-5 indigo--text text--darken-1">
-            {{ product.price }} $
-          </h1>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-btn color="orange" :to="'/detail/' + product.id" text>
-            รายละเอียด
-          </v-btn>
-          <v-btn color="green" text> Share </v-btn>
-        </v-card-actions>
-      </v-card>
+          <v-card-actions>
+            <v-btn
+              color="orange"
+              :to="'/detail/' + product.id"
+              text
+              @click="displayshow(1)"
+            >
+              Details
+            </v-btn>
+            <v-btn color="green" text> Share </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-container>
     </v-container>
     <!-- แบบที่สอง -->
-    <v-container grid-list-xs class="yellow">
-      <Detail></Detail>
+    <v-container>
+      <!-- <Detail></Detail> -->
+
+      <router-view
+        :key="$route.path"
+        :style="display_detail"
+        :product="productList"
+        @getcount="addCount"
+      ></router-view>
+
+      <!-- แบบที่สาม -->
     </v-container>
-    <!-- แบบที่สาม -->
-    <router-view :key="$route.path"></router-view>
+    <v-container :style="display_basket">
+      <Basket
+        :product="productList"
+        :productshop="basket"
+        @PayAll="payall"
+      ></Basket>
+    </v-container>
   </v-container>
 </template>
 
 <script>
-import Detail from "../components/Detail.vue";
+import Basket from "../components/Basket.vue";
+// import Detail from "../components/Detail.vue";
 
 export default {
   data() {
     return {
+      overlay: false,
+      zIndex: 0,
+      display_product: "",
+      basket: [],
+      display_detail: "display: none",
+      display_basket: "display: none",
       productList: [
         {
           id: 1,
@@ -65,6 +157,7 @@ export default {
           category: "men's clothing",
           image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
           rating: { rate: 3.9, count: 120 },
+          stock: 5,
         },
         {
           id: 2,
@@ -76,6 +169,7 @@ export default {
           image:
             "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
           rating: { rate: 4.1, count: 259 },
+          stock: 2,
         },
         {
           id: 3,
@@ -86,6 +180,7 @@ export default {
           category: "men's clothing",
           image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
           rating: { rate: 4.7, count: 500 },
+          stock: 2,
         },
         {
           id: 4,
@@ -96,6 +191,7 @@ export default {
           category: "men's clothing",
           image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
           rating: { rate: 2.1, count: 430 },
+          stock: 2,
         },
         {
           id: 5,
@@ -108,6 +204,7 @@ export default {
           image:
             "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
           rating: { rate: 4.6, count: 400 },
+          stock: 2,
         },
         {
           id: 6,
@@ -119,6 +216,7 @@ export default {
           image:
             "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
           rating: { rate: 3.9, count: 70 },
+          stock: 2,
         },
         {
           id: 7,
@@ -130,6 +228,7 @@ export default {
           image:
             "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
           rating: { rate: 3, count: 400 },
+          stock: 2,
         },
         {
           id: 8,
@@ -141,6 +240,7 @@ export default {
           image:
             "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
           rating: { rate: 1.9, count: 100 },
+          stock: 34,
         },
         {
           id: 9,
@@ -151,6 +251,7 @@ export default {
           category: "electronics",
           image: "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
           rating: { rate: 3.3, count: 203 },
+          stock: 6,
         },
         {
           id: 10,
@@ -161,6 +262,7 @@ export default {
           category: "electronics",
           image: "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
           rating: { rate: 2.9, count: 470 },
+          stock: 4,
         },
         {
           id: 11,
@@ -172,6 +274,7 @@ export default {
           category: "electronics",
           image: "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
           rating: { rate: 4.8, count: 319 },
+          stock: 7,
         },
         {
           id: 12,
@@ -183,6 +286,7 @@ export default {
           category: "electronics",
           image: "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg",
           rating: { rate: 4.8, count: 400 },
+          stock: 6,
         },
         {
           id: 13,
@@ -194,6 +298,7 @@ export default {
           category: "electronics",
           image: "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
           rating: { rate: 2.9, count: 250 },
+          stock: 2,
         },
         {
           id: 14,
@@ -205,6 +310,7 @@ export default {
           category: "electronics",
           image: "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
           rating: { rate: 2.2, count: 140 },
+          stock: 22,
         },
         {
           id: 15,
@@ -215,6 +321,7 @@ export default {
           category: "women's clothing",
           image: "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
           rating: { rate: 2.6, count: 235 },
+          stock: 22,
         },
         {
           id: 16,
@@ -226,6 +333,7 @@ export default {
           category: "women's clothing",
           image: "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
           rating: { rate: 2.9, count: 340 },
+          stock: 12,
         },
         {
           id: 17,
@@ -236,6 +344,7 @@ export default {
           category: "women's clothing",
           image: "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
           rating: { rate: 3.8, count: 679 },
+          stock: 12,
         },
         {
           id: 18,
@@ -246,6 +355,7 @@ export default {
           category: "women's clothing",
           image: "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
           rating: { rate: 4.7, count: 130 },
+          stock: 3,
         },
         {
           id: 19,
@@ -256,6 +366,7 @@ export default {
           category: "women's clothing",
           image: "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg",
           rating: { rate: 4.5, count: 146 },
+          stock: 6,
         },
         {
           id: 20,
@@ -266,11 +377,64 @@ export default {
           category: "women's clothing",
           image: "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
           rating: { rate: 3.6, count: 145 },
+          stock: 10,
         },
       ],
     };
   },
-  components: { Detail },
+  methods: {
+    addCount(i, id, count) {
+      var x = 0;
+      if (count == -1) {
+        this.displayshow(i);
+      } else if (count != 0) {
+        for (let index = 0; index < this.basket.length; index++) {
+          if (this.basket[index].id == id) {
+            this.basket[index].count += count;
+            x = 1;
+          }
+        }
+        if (x == 0) {
+          this.basket.push({
+            id: id,
+            count: count,
+            price: this.productList[id - 1].price,
+          });
+        }
+        this.displayshow(i);
+      }
+    },
+    displayshow(i) {
+      switch (i) {
+        case 1:
+          this.display_product = "display: none";
+          this.display_basket = "display: none";
+          this.display_detail = "";
+          break;
+        case 2:
+          this.display_basket = "display: none";
+          this.display_product = "";
+          this.display_detail = "display: none";
+          break;
+        case 3:
+          this.display_basket = "";
+          this.display_product = "display: none";
+          this.display_detail = "display: none";
+          break;
+        default:
+          break;
+      }
+    },
+    payall(i, x) {
+      if (x == 0) {
+        this.basket = [];
+        this.displayshow(i);
+      } else {
+        this.displayshow(i);
+      }
+    },
+  },
+  components: { Basket },
 };
 </script>
 
